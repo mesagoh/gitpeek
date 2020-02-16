@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Projects from '@/components/Projects'
+import ProjectInfo from '@/components/ProjectInfo'
 
 Vue.use(Router)
 
@@ -17,6 +18,12 @@ const router = new Router({
       path: '/:id/projects',
       name: 'projects',
       component: Projects,
+      props: true
+    },
+    {
+      path: '/:id/projects/:projectname',
+      name: 'projectinfo',
+      component: ProjectInfo,
       props: true
     }
   ]

@@ -16,7 +16,18 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  padding-top: 15vh;
+  position: relative;
+  overflow-x: hidden;
+  color: rgb(77, 77, 77);
+}
+
+a {
+  color: teal;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(218, 116, 133);
 }
 </style>
