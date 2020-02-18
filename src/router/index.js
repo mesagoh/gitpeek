@@ -15,16 +15,20 @@ const router = new Router({
       component: Home
     },
     {
-      path: '/:id/projects',
+      path: '/:id',
       name: 'projects',
       component: Projects,
       props: true
     },
     {
-      path: '/:id/projects/:projectname',
+      path: '/:id/:projectid',
       name: 'projectinfo',
       component: ProjectInfo,
       props: true
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })

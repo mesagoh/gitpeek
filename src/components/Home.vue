@@ -1,7 +1,8 @@
 <template>
   <div class="home">
-    <h1>Please Enter a GitHub Username</h1>
-    <input class="inputField" v-on:keyup.enter="handleSubmit" v-model="username" placeholder="username">
+    <h1>Peek into a GitHub Profile!</h1>
+    <input class="inputField" v-on:keyup.enter="handleSubmit" v-model="username" @input="handleInputChange" placeholder="username">
+    <div class="errorMsg" v-if="hasError">{{this.errorMsg}}</div>
   </div>
 </template>
 
@@ -12,23 +13,28 @@ export default {
   data () {
     return {
       username: null,
-      reposUrl: null
+      errorMsg: ''
     }
   },
   methods: {
-    handleSubmit: function () {
+    handleInputChange: function () {
+      if (this.errorMsg !== '') {
+        this.errorMsg = ''
+      }
+    },
+    hasError: function () {
+      return this.errorMsg != null
+    },
+    handleSubmit: async function () {
       if (this.username == null || this.username.length === 0) {
-        console.error('username is empty!') // TODO: display on page
+        this.errorMsg = 'Something went wrong... Please try again!'
       } else {
-        // check if github profile exist
-        const res = axios.get(`http://api.github.com/users/${this.username}`)
-        res.then(resp => {
-          this.reposUrl = resp.data.repos_url
-          console.log(resp.data.name)
-          this.$router.push({ path: `/${this.username}/projects` })
-        }).catch(e => {
-          console.error(e.msg)
-        })
+        try {
+          await axios.get(`http://api.github.com/users/${this.username}`)
+          this.$router.push({ name: 'projects', params: { id: `${this.username}` } })
+        } catch (e) {
+          this.errorMsg = 'Something went wrong... Please try again!'
+        }
       }
     }
   }
@@ -44,32 +50,28 @@ export default {
   width: 100%;
   height: 100%;
   padding-top: 20vh;
-  background: linear-gradient( -30deg, rgb(9, 221, 133), rgb(212, 238, 226));
+  background: linear-gradient( -20deg, var(--medium-green), var(--light-green), var(--dark-green));
   background-size: 400% 400%;
-  animation: gradient 3s ease infinite;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  animation: gradient 9s ease infinite;
+  color: var(--light-cream);
 }
 
 .inputField {
   padding: 1vh 1.3vw 1vh 1.3vw;
   width: 30vw;
-  font-size: 1.8vw;
+  min-width: 200px;
+  font-size: calc(8px + 1.8vw);
   border-radius: 10px;
-  border: 1px solid grey;
+  border: 1px solid var(--dark-grey);
 }
 
 .inputField:focus {
   outline: none;
+}
+
+.errorMsg {
+  font-size: calc(5px + 1.5vw);
+  color: var(--dark-red);
+  padding-top: 5vh;
 }
 </style>
