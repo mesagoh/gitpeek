@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Peek into a GitHub Profile!</h1>
+    <h1>Peek into a GitHub Profile</h1>
     <input class="inputField" v-on:keyup.enter="handleSubmit" v-model="username" @input="handleInputChange" placeholder="username">
     <div class="errorMsg" v-if="hasError">{{this.errorMsg}}</div>
   </div>
@@ -23,17 +23,17 @@ export default {
       }
     },
     hasError: function () {
-      return this.errorMsg != null
+      return (this.errorMsg != null || this.errorMsg.length !== 0)
     },
     handleSubmit: async function () {
       if (this.username == null || this.username.length === 0) {
-        this.errorMsg = 'Something went wrong... Please try again!'
+        this.errorMsg = 'Username is empty. Please try again.'
       } else {
         try {
           await axios.get(`http://api.github.com/users/${this.username}`)
           this.$router.push({ name: 'projects', params: { id: `${this.username}` } })
         } catch (e) {
-          this.errorMsg = 'Something went wrong... Please try again!'
+          this.errorMsg = 'Something went wrong... Please try again.'
         }
       }
     }
@@ -41,7 +41,6 @@ export default {
 }
 </script>]
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .home {
   left: 0;

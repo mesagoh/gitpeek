@@ -29,6 +29,8 @@ export default {
     }
   },
   async created () {
+    // Set up data appropriately before rendering.
+    // If API calls fails, user is redirected to home.
     try {
       const readmeInfo = await axios.get(`http://api.github.com/repos/${this.uid}/${this.project}/readme`, {
         headers: {
@@ -38,7 +40,7 @@ export default {
       this.fileContent = readmeInfo.data
       this.isLoading = false
     } catch (e) {
-      console.error(e.msg)
+      this.$router.push('home')
     }
   }
 }
@@ -47,7 +49,7 @@ export default {
 <style scoped>
 .projectInfo {
   text-align: left;
-  margin: 2vh 4vw 2vh 4vw;
+  margin: 2vh 4vw 8vh 4vw;
   word-wrap: break-all;
 }
 </style>

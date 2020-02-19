@@ -1,7 +1,7 @@
 <template>
     <div class="modal" v-on:click="collapseModal()">
         <div class="errorBox">
-            <p>Opps... No README found for this repository!</p>
+            <p>This repository doesn't have a README.</p>
         </div>
         <button id="cancel" v-on:click="collapseModal()">Return</button>
     </div>
