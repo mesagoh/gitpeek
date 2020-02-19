@@ -67,7 +67,7 @@ export default {
       this.repoList = repoInfo.data
       this.isLoading = false
     } catch (e) {
-      this.$router.push('home')
+      this.$router.push({ path: '/' })
     }
   }
 }

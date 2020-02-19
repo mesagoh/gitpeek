@@ -40,7 +40,7 @@ export default {
       this.fileContent = readmeInfo.data
       this.isLoading = false
     } catch (e) {
-      this.$router.push('home')
+      this.$router.push({ path: '/' })
     }
   }
 }
