@@ -32,7 +32,7 @@ export default {
     // Set up data appropriately before rendering.
     // If API calls fails, user is redirected to home.
     try {
-      const readmeInfo = await axios.get(`http://api.github.com/repos/${this.uid}/${this.project}/readme`, {
+      const readmeInfo = await axios.get(`https://api.github.com/repos/${this.uid}/${this.project}/readme`, {
         headers: {
           Accept: 'application/vnd.github.v3.raw'
         }

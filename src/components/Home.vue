@@ -30,7 +30,7 @@ export default {
         this.errorMsg = 'Username is empty. Please try again.'
       } else {
         try {
-          await axios.get(`http://api.github.com/users/${this.username}`)
+          await axios.get(`https://api.github.com/users/${this.username}`)
           this.$router.push({ name: 'projects', params: { id: `${this.username}` } })
         } catch (e) {
           this.errorMsg = 'Something went wrong... Please try again.'

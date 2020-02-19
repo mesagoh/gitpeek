@@ -49,7 +49,7 @@ export default {
     handleRepoClick: async function (reponame) {
       // onClick handler on each repository cell
       try {
-        await axios.get(`http://api.github.com/repos/${this.uid}/${reponame}/readme`)
+        await axios.get(`https://api.github.com/repos/${this.uid}/${reponame}/readme`)
         this.$router.push({ name: 'projectinfo', params: { id: `${this.uid}`, projectid: `${reponame}` } })
       } catch (e) {
         this.showModal = true
@@ -60,8 +60,8 @@ export default {
     // Set up data appropriately before rendering.
     // If API calls fails, user is redirected to home.
     try {
-      const userInfo = await axios.get(`http://api.github.com/users/${this.uid}`)
-      const repoInfo = await axios.get(`http://api.github.com/users/${this.uid}/repos`)
+      const userInfo = await axios.get(`https://api.github.com/users/${this.uid}`)
+      const repoInfo = await axios.get(`https://api.github.com/users/${this.uid}/repos`)
       this.uname = userInfo.data.name == null ? this.uid : userInfo.data.name
       this.title = `${this.uname}'s Projects`
       this.repoList = repoInfo.data
