@@ -1,6 +1,11 @@
-# leadiq-project
-
-> A Vue.js project
+# Peek at GitHub
+![screenshot](smallss1.gif)
+A Vue.js project that allows users to enter a github username and take a quick look at their repositories. Resources used to complete this project:
+1) [Vue.js Documentation](https://vuejs.org/v2/guide/)
+2) [Axios vs. fetch()](https://blog.logrocket.com/axios-or-fetch-api/)
+3) [CSS Gradient Background Animation](https://codepen.io/P1N2O/pen/pyBNzX)
+4) [GitHub API Developer Guide](https://developer.github.com/v3/)
+5) [Vue-Markdown: MD to HTML](https://github.com/miaolz123/vue-markdown)
 
 ## Build Setup
 
